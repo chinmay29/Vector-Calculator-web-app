@@ -1,0 +1,75 @@
+html, body { 
+	height: 100%; 
+	padding: 0;
+	margin: 0;
+}
+h4{
+	text-align: center;
+	font-weight: normal;
+}
+#sortable {
+	margin: auto;
+	padding: 0;
+	width: 310px;
+}
+#errorMessage{
+	color: red;
+}
+#equationDiv{
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+#equation{
+	border:1px solid black;
+	height: 40px;
+	text-align: center;
+	padding-top: 8px;
+}
+#graph{
+	width: 580px;
+	height: 700px;
+}
+#inputDiv, #operationsDiv, #outputDiv{ 
+	width: 47%;
+	float: left;
+	margin-left: 30px;	
+	padding-left: 10px;
+	padding-top: 10px;
+	height: 50%;
+}
+
+#inputDiv{
+	border-right:1px solid black;
+	border-bottom:1px solid black;
+	border-left:1px solid black;
+}
+#outputDiv{
+	border-left:1px solid black;
+}
+#inputButton{
+	margin-top: 20px;
+
+}
+#operationsTable {
+    border-collapse: collapse;
+}
+.operationsList {
+	border: 1px solid #CCC;
+	background: #F6F6F6;
+	font-family: "Tahoma";
+	color: #1C94C4;
+	padding: 1px;
+	height: 22px;
+}
+.cellpadding {
+   padding-left: 5px;
+   padding-right: 5px;
+   padding-top: .5em;
+   padding-bottom: .5em;
+}
+
+#output{
+	margin-top: 30px;
+	margin-left: 30px;
+	margin-right: 20px;
+}

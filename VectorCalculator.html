@@ -1,0 +1,112 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Latest compiled and minified Jquery and Jquery UI -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Latest compiled and minified bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Plotly.js for graph -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body onload="document.inputForm.min.focus();">
+	<div id="inputDiv">
+		<FORM NAME="inputForm" ACTION="" METHOD="GET">
+			<h4>Enter values for Input vector X </h4>
+			<table>
+				<tr>
+					<td>Min: </td>
+					<td><INPUT TYPE="number" NAME="min" VALUE="" /></td>
+				</tr>
+				<tr>
+					<td>Spacing:  </td>
+					<td><INPUT TYPE="number" NAME="spacing" VALUE="" /></td>
+				</tr>
+				<tr>
+					<td>Max:  </td>
+					<td><INPUT TYPE="number" NAME="max" VALUE="" /></td>
+				</tr>
+			</table>
+
+			<div id="inputButton">
+				<INPUT TYPE="button" NAME="button" Value="Generate Inputs" class="btn btn-info" onclick="formValidation()" />
+				 <ul>
+		        	<li> Click on above button to generate/update input vector X</li>
+		        </ul>
+			</div>
+		</FORM>
+		<div id="showMessage" style="display:none;">Input vector X generated successfully</div>
+	</div>
+	<div id="operationsDiv">
+		<table id="operationsTable">
+		<caption>Add Math operations</caption>
+		    <tr>
+				<td class="cellpadding">Scalar value:</td>
+				<td class="cellpadding"><INPUT TYPE="number" name= "secondAdd" id="secondAdd" VALUE="" /></td>
+				<td class="cellpadding"><button id="addButton" onclick="new Operation(operationData.add).addElement();" class="btn btn-primary">add</button></td>
+			</tr>
+			<tr>
+				<td class="cellpadding">Scalar value:</td>
+				<td class="cellpadding"><INPUT TYPE="number" name= "secondMulti" id="secondMultiply" VALUE="" /></td>
+				<td class="cellpadding"><button id="multiplyButton" onclick="new Operation(operationData.multiply).addElement();" class="btn btn-primary">multiply</button></td>
+			</tr>
+			<tr>
+				<td class="cellpadding">Scalar value:</td>
+				<td class="cellpadding"><INPUT TYPE="number" name= "secondPow" id="secondPow" VALUE="" /></td>
+				<td class="cellpadding"><button id="powButton" onclick="new Operation(operationData.pow).addElement();" class="btn btn-primary">pow</button></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button id="reciprocalButton" onclick="new Operation(operationData.reciprocal).addElement();" class="btn btn-primary">reciprocal</button></td>
+				<td class="cellpadding"><button id="sqrtButton" onclick="new Operation(operationData.sqrt).addElement();" class="btn btn-primary">sqrt</button></td>
+			</tr>
+			<tr>
+				<td class="cellpadding">Scalar value:</td>
+				<td class="cellpadding"><INPUT TYPE="number" name= "secondDivide" id="secondDivide" VALUE="" /></td>
+				<td class="cellpadding"><button id="divideButton" onclick="new Operation(operationData.divide).addElement();" class="btn btn-primary">divide</button></td>
+			</tr>
+			<tr>
+				<td class="cellpadding">Scalar value:</td>
+				<td class="cellpadding"><INPUT TYPE="number" name= "secondSubtract" id="secondSubtract" VALUE="" /></td>
+				<td class="cellpadding"><button id="subtractButton" onclick="new Operation(operationData.subtract).addElement();" class="btn btn-primary">subtract</button></td>
+			</tr>
+	    </table>
+	    <div id="errorMessage"></div>
+	    <div id="equationDiv">Equation: <h4><div id="equation"></div></h4>
+           
+	    </div>
+	    <ul>
+	    <li> Drag operations below to change the sequence in the equation</li>
+	    <li> Drag out any operation from below list to remove it from sequence </li>
+		<h3>Sequence of Maths operations:</h3>
+		<ol id="sortable"> 
+		</ol>
+    </div>
+    <div id="outputDiv">
+    	<button onclick="displayOutput()" class="btn btn-success"> Output Vector </button>
+    	<button onclick="generateGraph()" class="btn btn-success"> Output graph</button>
+	    <div id="output">
+	    </div>
+	    <div id="graph" style="display:none;">
+	    </div>
+    </div>
+<script src="scripts.js"></script>
+<script>
+$("#sortable").sortable({
+	over: function(e, ui) { sortableIn = 1; },
+    out: function(e, ui) { sortableIn = 0; },
+    beforeStop: function (event, ui) {
+        newItem = ui.item;
+        if (sortableIn == 0) { 
+          ui.item.remove(); 
+       }
+    },
+    stop : sortEventHandler
+});
+</script>
+</body>
+</html>
